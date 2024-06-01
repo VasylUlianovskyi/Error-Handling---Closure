@@ -20,5 +20,49 @@ try {
   console.error(err);
 }
 
-console.log(numberToPow(2, 3));
-console.log("Рядок для перевірки чи працює код після помилок");
+// console.log(numberToPow(2, 3));
+// console.log("Рядок для перевірки чи працює код після помилок");
+
+// 2. *Реалізувати функцію для валідації імейлу. Імейл має бути рядком і містити символ "@", цей символ не має бути першим або останнім.
+
+function validEmail(email) {
+  if (typeof email !== "string") {
+    throw new TypeError("email must be a string");
+  }
+  if (!email.includes("@")) {
+    throw new Error("Email must include '@'");
+  }
+  if (email.indexOf("@") === 0 || email.indexOf("@") === email.length - 1) {
+    throw new Error("'@' can`t be first or last in email");
+  }
+  return `Email "${email}" is valid`;
+}
+
+try {
+  console.log(validEmail("test@mail.com"));
+  console.log(validEmail(43));
+} catch (err) {
+  console.error("err", err);
+}
+
+try {
+  console.log(validEmail("testmail.com"));
+} catch (err) {
+  console.error("err", err);
+}
+
+try {
+  console.log(validEmail("@testmail.com"));
+} catch (err) {
+  console.error("err", err);
+}
+
+try {
+  console.log(validEmail("testmail.com@"));
+} catch (err) {
+  console.error("err", err);
+}
+
+console.log(validEmail("test@mail.com"));
+
+document.write(`<h1>Test</h1>`);
